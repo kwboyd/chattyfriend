@@ -30,9 +30,9 @@ app.get("/ask_question", function (request, response) {
            console.log(score)
           //  console.log("texts =", texts)
            var textMessage = {
-             messages: {
-               text: answer
-             }
+             messages: [
+               {text: answer}
+             ]
            }
           //  var textMessage = make_text_message(texts)
            console.log('textMessage =', textMessage)
