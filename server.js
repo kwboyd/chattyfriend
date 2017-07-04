@@ -25,9 +25,12 @@ app.get("/ask_question", function (request, response) {
            response.send({answer: "Oh no! error = " + err + ", " + JSON.stringify(res)});
          } else {
            console.log("res.body =", res.body)
-           var texts = [res.body.answer, "Score: " + res.body.score]
+           var answer = res.body.answers[0].answer;
+           var score = res.body.answers[0].score;
+           console.log(score)
            console.log("texts =", texts)
-           var textMessage = make_text_message(texts)
+           var textMessage = answer;
+          //  var textMessage = make_text_message(texts)
            console.log('textMessage =', textMessage)
            response.send(textMessage);
          }
