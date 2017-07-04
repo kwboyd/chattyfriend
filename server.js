@@ -28,7 +28,7 @@ app.get("/ask_question", function (request, response) {
            var answer = res.body.answers[0].answer;
            var score = res.body.answers[0].score;
            console.log(score)
-           console.log("texts =", texts)
+          //  console.log("texts =", texts)
            var textMessage = answer;
           //  var textMessage = make_text_message(texts)
            console.log('textMessage =', textMessage)
