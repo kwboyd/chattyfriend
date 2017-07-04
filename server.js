@@ -2,6 +2,13 @@ var express = require('express');
 var app = express();
 var superagent = require("superagent");
 
+var make_text_message = (texts) => {
+  var txt = texts.map((text) => {return {text: text}})
+  return {
+    messages: txt
+  }
+};
+
 app.get("/ask_question", function (request, response) {
     console.log('>>> Question endpoint.')
 
