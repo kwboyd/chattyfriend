@@ -39,7 +39,7 @@ app.get("/ask_question", function (request, response) {
                .catch(err => console.error(err));
 
              function parseResults(res){
-               const entities = res.response.entities;
+               var entities = res.response.entities;
                var tags = [];
                console.log(JSON.stringify(res, null, 4))
                for (i in entities){
