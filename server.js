@@ -35,7 +35,7 @@ app.get("/ask_question", function (request, response) {
 
   });
 
-  app.get("/store_question", function (request, response) {
+  app.post("/store_question", function (request, response) {
       console.log('>>> Storing endpoint.')
 
       var email = request.query.email;
