@@ -40,7 +40,8 @@ app.get("/ask_question", function (request, response) {
       var first_name = request.query.first_name;
       var last_name = request.query.last_name;
       var full_name = `${first_name} ${last_name}`;
-      var time_asked = new Date(year, month, day);
+      var now = new Date();
+      var time_asked = getDateTime();
 
              textRazor.exec(query, options)
                  .then(res => parseResults(res))
@@ -193,3 +194,19 @@ app.get("/ask_question", function (request, response) {
 var listener = app.listen(process.env.PORT, function () {
   console.log('App is listening on port ' + listener.address().port);
 });
+
+function getDateTime() {
+
+      var date = new Date();
+
+      var year = date.getFullYear();
+
+      var month = date.getMonth() + 1;
+      month = (month < 10 ? "0" : "") + month;
+
+      var day  = date.getDate();
+      day = (day < 10 ? "0" : "") + day;
+
+      return day + '/' + month + '/' + year;
+
+}
