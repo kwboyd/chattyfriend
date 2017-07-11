@@ -35,7 +35,7 @@ app.get("/ask_question", function (request, response) {
 
   });
 
-  app.post("/store_question", function (request, response) {
+  app.get("/store_question", function (request, response) {
       console.log('>>> Storing endpoint.')
 
       var email = request.query.email;
@@ -54,6 +54,12 @@ app.get("/ask_question", function (request, response) {
                    tags.push(entities[i].entityId);
                  }
                  console.log(tags);
+                 var textMessage = {
+                   messages: [
+                     {text: 'Thank you, your question has been submitted! Feel free to ask another question.'}
+                   ]
+                 }
+                 response.send(textMessage);
              }
              console.log(full_name);
              console.log(email);
