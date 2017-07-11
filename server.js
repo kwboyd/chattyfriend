@@ -1,18 +1,17 @@
 var express = require('express');
 var app = express();
 var superagent = require("superagent");
+const TextRazor = require('textrazor');
+const textRazor = new TextRazor('98d2b4160bce259e9e5ede577635f209f4acd81d5ca8a360ead4779f');
+const options = { extractors: 'entities' };
 
-var make_text_message = (texts) => {
-  var txt = texts.map((text) => {return {text: text}})
-  return {
-    messages: txt
-  }
-};
 
 app.get("/ask_question", function (request, response) {
     console.log('>>> Question endpoint.')
 
     var query = request.query.search_query
+    var first_name = request.query.first_name;
+    var last_name = request.query.last_name;
     console.log("search_query = ", query)
 
     superagent
@@ -28,15 +27,27 @@ app.get("/ask_question", function (request, response) {
            var answer = res.body.answers[0].answer;
            var score = res.body.answers[0].score;
            console.log(score)
-          //  console.log("texts =", texts)
            var textMessage = {
              messages: [
                {text: answer}
              ]
            }
-          //  var textMessage = make_text_message(texts)
            console.log('textMessage =', textMessage)
            response.send(textMessage);
+           textRazor.exec(query, options)
+               .then(res => parseResults(res))
+               .catch(err => console.error(err));
+
+             function parseResults(res){
+               const entities = res.response.entities;
+               var tags = [];
+               // console.log(JSON.stringify(res, null, 4))
+
+               for (i in entities){
+                 tags.push(entities[i].entityId);
+               }
+               console.log(tags);
+           }
          }
        });
 
