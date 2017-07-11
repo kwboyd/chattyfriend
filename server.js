@@ -5,8 +5,6 @@ const TextRazor = require('textrazor');
 const textRazor = new TextRazor('98d2b4160bce259e9e5ede577635f209f4acd81d5ca8a360ead4779f');
 const options = { extractors: 'entities' };
 var query;
-var first_name;
-var last_name;
 
 app.get("/ask_question", function (request, response) {
 
@@ -63,6 +61,7 @@ app.get("/ask_question", function (request, response) {
                  superagent
                     .post('https://hooks.zapier.com/hooks/catch/2378437/5dyk2p/')
                     .send({
+                      question: query,
                       email: email,
                       full_name: full_name,
                       keywords: tags
