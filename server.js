@@ -60,9 +60,23 @@ app.get("/ask_question", function (request, response) {
                    ]
                  }
                  response.send(textMessage);
+                 superagent
+                    .post('https://hooks.zapier.com/hooks/catch/2378437/5dyk2p/')
+                    .send({
+                      email: email,
+                      full_name: full_name,
+                      keywords: tags
+                     })
+                    .set('Content-Type', 'application/json')
+                    .end(function(err, res) {
+                      if (err || !res.ok) {
+                        response.send({answer: "Error: " + err + ", " + JSON.stringify(res)});
+                      } else {
+                        console.log('sent to sheets')
+                      }
+                    });
              }
-             console.log(full_name);
-             console.log(email);
+
 
     //          // Load client secrets from a local file.
     //          fs.readFile('client_secret.json', function processClientSecrets(err, content) {
@@ -173,21 +187,6 @@ app.get("/ask_question", function (request, response) {
     //          }
      //
     //  });
-
-             superagent
-                .post('https://hooks.zapier.com/hooks/catch/2378437/5dyk2p/')
-                .send({ hello: 'world' })
-                // .set('Ocp-Apim-Subscription-Key', process.env.QA_SECRET)
-                .set('Content-Type', 'application/json')
-                .end(function(err, res) {
-                  if (err || !res.ok) {
-                    response.send({answer: "Error: " + err + ", " + JSON.stringify(res)});
-                  } else {
-                    // var answer = res.body.answers[0].answer;
-                   //  var score = res.body.answers[0].score;
-                   //  console.log(score)
-                  }
-                });
      });
 
 var listener = app.listen(process.env.PORT, function () {
