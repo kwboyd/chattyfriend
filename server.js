@@ -40,6 +40,7 @@ app.get("/ask_question", function (request, response) {
       var first_name = request.query.first_name;
       var last_name = request.query.last_name;
       var full_name = `${first_name} ${last_name}`;
+      var time_asked = new Date(year, month, day);
 
              textRazor.exec(query, options)
                  .then(res => parseResults(res))
@@ -64,7 +65,8 @@ app.get("/ask_question", function (request, response) {
                       question: query,
                       email: email,
                       full_name: full_name,
-                      keywords: tags
+                      keywords: tags,
+                      time: time_asked
                      })
                     .set('Content-Type', 'application/json')
                     .end(function(err, res) {
