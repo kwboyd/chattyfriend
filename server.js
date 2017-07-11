@@ -63,8 +63,22 @@ app.get("/ask_question", function (request, response) {
              }
              console.log(full_name);
              console.log(email);
-     });
 
+             superagent
+                .post('https://hooks.zapier.com/hooks/catch/2378437/5dyk2p/')
+                .send({ hello: 'world' })
+                // .set('Ocp-Apim-Subscription-Key', process.env.QA_SECRET)
+                .set('Content-Type', 'application/json')
+                .end(function(err, res) {
+                  if (err || !res.ok) {
+                    response.send({answer: "Error: " + err + ", " + JSON.stringify(res)});
+                  } else {
+                    // var answer = res.body.answers[0].answer;
+                   //  var score = res.body.answers[0].score;
+                   //  console.log(score)
+                  }
+                });
+     });
 
 var listener = app.listen(process.env.PORT, function () {
   console.log('App is listening on port ' + listener.address().port);
