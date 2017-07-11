@@ -42,7 +42,6 @@ app.get("/ask_question", function (request, response) {
                const entities = res.response.entities;
                var tags = [];
                // console.log(JSON.stringify(res, null, 4))
-              console.log(entities);
                for (i in entities){
                  tags.push(entities[i].entityId);
                }
