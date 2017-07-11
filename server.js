@@ -41,7 +41,7 @@ app.get("/ask_question", function (request, response) {
              function parseResults(res){
                const entities = res.response.entities;
                var tags = [];
-               // console.log(JSON.stringify(res, null, 4))
+               console.log(JSON.stringify(res, null, 4))
                for (i in entities){
                  tags.push(entities[i].entityId);
                }
