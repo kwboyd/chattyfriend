@@ -76,7 +76,7 @@ app.get("/ask_question", function (request, response) {
                       } else {
                         console.log(query)
                         console.log(email)
-                        console.log(keywords)
+                        console.log(tags)
                         console.log('sent to sheets')
                         console.log(JSON.stringify(res))
                       }
