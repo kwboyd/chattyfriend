@@ -74,7 +74,11 @@ app.get("/ask_question", function (request, response) {
                       if (err || !res.ok) {
                         response.send({answer: "Error: " + err + ", " + JSON.stringify(res)});
                       } else {
+                        console.log(query)
+                        console.log(email)
+                        console.log(keywords)
                         console.log('sent to sheets')
+                        console.log(JSON.stringify(res))
                       }
                     });
              }
