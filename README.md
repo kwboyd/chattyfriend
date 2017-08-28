@@ -16,7 +16,7 @@ Sign up for accounts on each of these sites (free versions on all will suffice):
 4. [Facebook](https://facebook.com/)
 4. [Google Sheets](https://sheets.google.com/)
 5. [Heroku or your Node.js server of choice](https://www.heroku.com/)
-6. [Textrazor](https://www.textrazor.com/)
+6. [TextRazor](https://www.textrazor.com/)
 
 ### Heroku
 Create an account and a project. Add the Heroku project as an origin to your local repo.
@@ -24,7 +24,7 @@ Create an account and a project. Add the Heroku project as an origin to your loc
 ### TextRazor
 
 After registering for an account, replace the string on line 5 of server.js with your API key
-ex: `const textRazor = new TextRazor('<api-key>')`
+ex: `const textRazor = new TextRazor('api-key')`
 
 ### QnAMaker
 
@@ -36,7 +36,7 @@ Upload the prepared spreadsheets to QnAMaker and wait for it to train. Feel free
 QnAMaker also tends to break if you try to replace or edit a spreadsheet. It's easier to delete and reupload spreadsheets after you make changes, though it is timeconsuming.
 
 After that is done, publish your project and replace the string on line 14 of server.js with the URL provided.
-ex: `.post('https://westus.api.cognitive.microsoft.com/qnamaker/v2.0/knowledgebases/<example-id>/generateAnswer')`
+ex: `.post('https://westus.api.cognitive.microsoft.com/qnamaker/v2.0/knowledgebases/('example id')/generateAnswer')`
 
 Make note of the secret key provided.
 
@@ -67,9 +67,9 @@ Make a Facebook page for your bot. Then, create a Chatfuel bot connected to that
 
 7. Under the Confirmation block, add a 'User Input' with a message such as "Did that answer your question (yes/no)?" Set the Save Answer to Attribute to {{confirmation}}.
 
-8. Add a 'Go To Block' with a conditional. Add <if> {{confirmation}} <is> "yes" "yeah" "sure" (or whatever other synonyms for yes you can think of). Have this redirect to the 'Answered' block.
+8. Add a 'Go To Block' with a conditional. Add ('if) {{confirmation}} ('is') "yes" "yeah" "sure" (or whatever other synonyms for yes you can think of). Have this redirect to the 'Answered' block.
 
-9. Add another 'Go To Block' with a conditional. Add <if> {{confirmation}} <is> "no" "nah" "nope" (or whatever other synonyms for no you can think of). Have this redirect to the 'Not answered' block.
+9. Add another 'Go To Block' with a conditional. Add ('if') {{confirmation}} ('is') "no" "nah" "nope" (or whatever other synonyms for no you can think of). Have this redirect to the 'Not answered' block.
 
 10. Add a 'Go To Block' to the 'Answered' block. Add a message saying something like "Great! Feel free to ask another question." Have it simply redirect to the question prompt block.
 
